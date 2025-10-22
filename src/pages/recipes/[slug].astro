@@ -1,0 +1,52 @@
+---
+type Recipe = {
+  slug: string;
+  title: string;
+  description: string;
+  prepTime: string;
+  cookTime: string;
+  servings: number;
+  ingredients: string[];
+  steps: string[];
+  tags: string[];
+};
+
+export async function getStaticPaths() {
+  const recipeModules = import.meta.glob('../../content/recipes/*.json');
+
+  const entries = await Promise.all(
+    Object.values(recipeModules).map(async (loader) => {
+      const { default: recipe } = (await loader()) as { default: Recipe };
+      
+      return {
+        params: { slug: recipe.slug },
+        props: { recipe },
+      };
+    })
+  );
+
+  return entries;
+}
+console.log(Astro.props as { recipe: Recipe });
+const { recipe } = Astro.props as { recipe: Recipe };
+---
+<a href="/">&larr; Back to recipes</a>
+<h1>{recipe.title}</h1>
+<p>{recipe.description}</p>
+<p>
+  <strong>Prep:</strong> {recipe.prepTime} | <strong>Cook:</strong> {recipe.cookTime} | <strong>Serves:</strong> {recipe.servings}
+</p>
+<h2>Ingredients</h2>
+<ul>
+  {recipe.ingredients.map((item) => <li>{item}</li>)}
+</ul>
+<h2>Instructions</h2>
+<ol>
+  {recipe.steps.map((step) => <li>{step}</li>)}
+</ol>
+{recipe.tags && (
+  <>
+    <h3>Tags</h3>
+    <p>{recipe.tags.join(', ')}</p>
+  </>
+)}
