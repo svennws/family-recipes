@@ -70,16 +70,16 @@ const { recipe } = Astro.props as { recipe: RecipeData };
                     <div class="title">
                         <h1>{recipe.title}</h1>
                         <p>{recipe.description}</p>
-						<div class="date">
-							{recipe.publishedAt}
-							{
-								recipe.lastModifiedAt && (
-									<div class="last-updated-on">
-										Last updated on {recipe.lastModifiedAt}
-									</div>
-								)
-							}
-						</div>
+                        {(recipe.publishedAt || recipe.lastModifiedAt) && (
+                            <div class="date">
+                                {recipe.publishedAt && <FormattedDate date={recipe.publishedAt} />}
+                                {recipe.lastModifiedAt && (
+                                    <div class="last-updated-on">
+                                        Last updated on <FormattedDate date={recipe.lastModifiedAt} />
+                                    </div>
+                                )}
+                            </div>
+                        )}
                     </div>
                     <hr />
                     <p>
