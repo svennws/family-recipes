@@ -3,39 +3,18 @@ import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
-
-type Recipe = {
-    slug: string;
-    title: string;
-    description: string;
-    prepTime: string;
-    cookTime: string;
-    servings: number;
-    ingredients: string[];
-    steps: string[];
-    tags: string[];
-    createdAt: string;
-    lastModifiedAt: string;
-    publishedAt: string;
-};
+import { getCollection } from 'astro:content';
+import type { RecipeData } from '../../content/config';
 
 export async function getStaticPaths() {
-    const recipeModules = import.meta.glob('../../content/recipes/*.json');
+    const recipes = await getCollection('recipes');
 
-    const entries = await Promise.all(
-        Object.values(recipeModules).map(async (loader) => {
-            const { default: recipe } = (await loader()) as { default: Recipe };
-
-            return {
-                params: { slug: recipe.slug },
-                props: { recipe },
-            };
-        })
-    );
-
-    return entries;
+    return recipes.map((entry) => ({
+        params: { slug: entry.data.slug },
+        props: { recipe: entry.data }
+    }));
 }
-const { recipe } = Astro.props as { recipe: Recipe };
+const { recipe } = Astro.props as { recipe: RecipeData };
 ---
 
 <html lang="en">
@@ -87,7 +66,7 @@ const { recipe } = Astro.props as { recipe: Recipe };
         <main>
             <article>
                 <div class="prose">
-                    <a href="</article>/">&larr; Back to recipes</a>
+                    <a href="/">&larr; Back to recipes</a>
                     <div class="title">
                         <h1>{recipe.title}</h1>
                         <p>{recipe.description}</p>
@@ -114,7 +93,7 @@ const { recipe } = Astro.props as { recipe: Recipe };
                     <ol>
                         {recipe.steps.map((step) => <li>{step}</li>)}
                     </ol>
-                    {recipe.tags && (
+                    {recipe.tags.length > 0 && (
                         <>
                             <h3>Tags</h3>
                             <p>{recipe.tags.join(', ')}</p>
