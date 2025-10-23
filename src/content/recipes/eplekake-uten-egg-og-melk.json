@@ -1,0 +1,34 @@
+{
+    "title": "Eplekake m/u egg og melk",
+    "slug": "eplekake-uten-egg-og-melk.json",
+    "description": "",
+    "prepTime": "? minutter",
+    "cookTime": "? minutter",
+    "servingSize": "Langpanne",
+    "ingredients": [
+        "4 egg / egg-erstatning",
+        "3 dl. sukker (+ litt til å strø over før steking)",
+        "3,5 dl. melk / soya fløte",
+        "9,5 dl. hvetemel",
+        "100 g. margarin / uten melk",
+        "6 ts. bakepulver",
+        "0,5 ts. kanel (+ litt til å strø over før steking)",
+        "ca. 10 epler"
+    ],
+    "steps": [
+        "Skrell og hakk opp eplene i små biter.",
+        "Pisk eggedosis.",
+        "Smelt margarinen.",
+        "Bland alt sammen til en stor røre og hell i formen.",
+        "Strø over litt kanel og sukker.",
+        "Stek på 200ºC i ca. 30 minutter."
+    ],
+    "tags": [
+        "bakevarer",
+        "kaker"
+    ],
+    "createdAt": "2017-09-02",
+    "publishedAt": "2017-09-02",
+    "lastModifiedAt": "2017-09-02",
+    "author": "Andre Salvesen"
+}
