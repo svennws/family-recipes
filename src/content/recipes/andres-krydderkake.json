@@ -1,0 +1,35 @@
+{
+    "title": "André's krydderkake",
+    "slug": "andres-krydderkake",
+    "description": "Kjempe god og saftig krydderkake.",
+    "prepTime": "15 minutter",
+    "cookTime": "45 minutter",
+    "servingSize": "Langpanne",
+    "ingredients": [
+        "7,5 dl. melk",
+        "2,5 dl. kremfløte",
+        "6 dl. sukker",
+        "3 dl. brunt sukker",
+        "225 g. smelta margarin",
+        "11 dl. hvetemel",
+        "2 ss. natron",
+        "2 ts. nellik",
+        "2 ts. kanel",
+        "2 ts. kardemomme",
+        "2 ts. ingefær",
+        "4 ss. syltetøy (tyttebær, solbær, rips, bringebær)"
+    ],
+    "steps": [
+        "Melk, fløte og sukker vispes først, deretter tilsetter du de andre ingrediensene.",
+        "Stek ved 175ºC i ca. 45 min."
+    ],
+    "tags": [
+        "desserter",
+        "bakevarer",
+        "kaker"
+    ],
+    "createdAt": "2017-09-02",
+    "publishedAt": "2017-09-02",
+    "lastModifiedAt": "2017-09-02",
+    "author": "Andre Salvesen"
+}
