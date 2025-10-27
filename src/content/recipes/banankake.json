@@ -1,0 +1,27 @@
+{
+    "title": "Banankake",
+    "slug": "banankake",
+    "description": "",
+    "prepTime": "20 minutter",
+    "cookTime": "30 minutter",
+    "servingSize": "Langpanne",
+    "ingredients": [
+        "4 egg og 3 dl. sukker piskes til eggedosis.",
+        "4-5 bananer moses med 3 dl. sukker.",
+        "9 dl. hvetemel, 4 ts. bakepulver, 4 ts vaniljesukker og 2 ts natron siktes sammen.",
+        "250 g. smør smeltes og blandes med 1,5 dl. melk."
+    ],
+    "steps": [
+        "Bland alt sammen vekselvis til en fin røre og hell i formen.",
+        "Stek på 200ºC i ca. 30 minutter."
+    ],
+    "tags": [
+        "desserter",
+        "bakevarer",
+        "kaker"
+    ],
+    "createdAt": "2017-09-02",
+    "publishedAt": "2017-09-02",
+    "lastModifiedAt": "2017-09-02",
+    "author": "Andre Salvesen"
+}
