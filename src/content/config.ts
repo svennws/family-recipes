@@ -1,9 +1,7 @@
 import { defineCollection, z } from 'astro:content';
-import { optional } from 'astro:schema';
 
 const recipeSchema = z.object({
     title: z.string(),
-    slug: z.string(),
     description: z.string(),
     prepTime: z.string().optional(),
     cookTime: z.string().optional(),

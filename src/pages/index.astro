@@ -7,8 +7,13 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import { getCollection } from 'astro:content';
 import type { RecipeData } from '../content/config';
 
-const recipes: RecipeData[] = (await getCollection('recipes'))
-    .map((entry) => entry.data)
+type RecipeListItem = RecipeData & { slug: string };
+
+const recipes: RecipeListItem[] = (await getCollection('recipes'))
+    .map((entry) => ({
+        slug: entry.id.split('/').pop() ?? entry.id,
+        ...entry.data
+    }))
     .sort((a, b) => a.title.localeCompare(b.title));
 ---
 

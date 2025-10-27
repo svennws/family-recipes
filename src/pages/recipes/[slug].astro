@@ -10,7 +10,7 @@ export async function getStaticPaths() {
     const recipes = await getCollection('recipes');
 
     return recipes.map((entry) => ({
-        params: { slug: entry.data.slug },
+        params: { slug: entry.id.split('/').pop() ?? entry.id },
         props: { recipe: entry.data }
     }));
 }
