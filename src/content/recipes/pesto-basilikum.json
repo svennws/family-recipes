@@ -14,7 +14,10 @@
     "createdAt": "2016-02-07 14:57:30.000000",
     "publishedAt": "2016-02-07 14:57:30.000000",
     "lastModifiedAt": "2016-02-07 14:57:30.000000",
-    "tags": "diverse-tilbehor",
+    "tags": [
+        "diverse",
+        "tilbehor"
+    ],
     "ingredients": [
         "1 potte basilikum",
         "1 dl ristede pinjekjerner",

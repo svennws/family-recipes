@@ -13,7 +13,10 @@
     "createdAt": "2016-12-16 17:26:23.000000",
     "publishedAt": "2016-12-16 17:26:23.000000",
     "lastModifiedAt": "2016-12-16 17:26:23.000000",
-    "tags": "diverse-tilbehor",
+    "tags": [
+        "diverse",
+        "tilbehor"
+    ],
     "ingredients": [
         "Innholdet av 2 loff",
         "2 egg",
