@@ -18,7 +18,10 @@
     "createdAt": "2016-12-07 20:37:09.000000",
     "publishedAt": "2016-12-07 20:37:09.000000",
     "lastModifiedAt": "2016-12-07 20:37:09.000000",
-    "tags": "diverse-tilbehor",
+    "tags": [
+        "diverse",
+        "tilbehor"
+    ],
     "ingredients": [
         "3dl hvitt sukker",
         "1/2ss lønnesirrup",

@@ -12,7 +12,9 @@
     "createdAt": "2016-12-05 19:42:05.000000",
     "publishedAt": "2016-12-05 19:42:05.000000",
     "lastModifiedAt": "2016-12-05 19:42:05.000000",
-    "tags": "desserter",
+    "tags": [
+        "desserter"
+    ],
     "ingredients": [
         "3dl fløte",
         "2ss sukker",

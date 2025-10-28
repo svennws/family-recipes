@@ -16,7 +16,10 @@
     "createdAt": "2016-12-18 18:04:26.000000",
     "publishedAt": "2016-12-18 18:04:26.000000",
     "lastModifiedAt": "2016-12-18 18:04:26.000000",
-    "tags": "diverse-tilbehor",
+    "tags": [
+        "diverse",
+        "tilbehor"
+    ],
     "ingredients": [
         "4 dl grønne erter",
         "2 ss smør",
