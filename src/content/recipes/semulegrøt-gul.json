@@ -1,0 +1,29 @@
+{
+    "description": "",
+    "prepTime": "? minutter",
+    "cookTime": "? minutter",
+    "servingSize": "?",
+    "author": "Svenn Salvesen",
+    "steps": [
+        "Ha 3/4 av melken i en kjele og rør inn semulegryn og polentagryn i kald melk.",
+        "Kok opp underomrøring.",
+        "Spe med resten av melken etter hvert som det tykner.",
+        "Rør inn smør og smak til med salt når det nærmer seg ferdig.",
+        "Kan evnt tilsettes litt kardemomme og vaniljesukker for en vri på smaken.",
+        "Kan også tilsettes litt gurkemeie for å få grøten mer gul."
+    ],
+    "title": "Gul semulegrynsgrøt",
+    "createdAt": "2015-02-02 17:12:06.000000",
+    "publishedAt": "2015-02-02 17:12:06.000000",
+    "lastModifiedAt": "2015-02-02 17:12:06.000000",
+    "tags": [
+        "middagsretter",
+        "grot"
+    ],
+    "ingredients": [
+        "1 L melk (helmelk eller havremelk)",
+        "0.5 dl semulegryn",
+        "1 dl polentagryn",
+        "0.5 ts salt"
+    ]
+}

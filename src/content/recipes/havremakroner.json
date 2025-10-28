@@ -1,0 +1,30 @@
+{
+    "description": "",
+    "prepTime": "? minutter",
+    "cookTime": "? minutter",
+    "servingSize": "?",
+    "author": "Svenn Salvesen",
+    "steps": [
+        "Rør sammen alle ingredienser.",
+        "Stekes ved 180 grader i ca 15-20 min."
+    ],
+    "title": "Bestemors havremakroner",
+    "createdAt": "2016-12-05 19:39:14.000000",
+    "publishedAt": "2016-12-05 19:39:14.000000",
+    "lastModifiedAt": "2016-12-05 19:39:14.000000",
+    "tags": [
+        "bakevarer",
+        "julekaker"
+    ],
+    "ingredients": [
+        "1 1/2 kopp havregryn",
+        "1 kopp kokos",
+        "1 kopp sukker",
+        "1 kopp hvetemel",
+        "1 ts bakepulver",
+        "1 kopp smelta smør",
+        "1/4 ts salt",
+        "1 egg",
+        "1 kopp = 1 1/2 dl"
+    ]
+}

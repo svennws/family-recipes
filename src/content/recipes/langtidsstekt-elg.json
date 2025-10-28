@@ -1,0 +1,43 @@
+{
+    "description": "",
+    "prepTime": "? minutter",
+    "cookTime": "? minutter",
+    "servingSize": "?",
+    "author": "Svenn Salvesen",
+    "steps": [
+        "Tin steken i kjøleskap.",
+        "Sett stekeovnen på ca 70°C.",
+        "Sett steketermometer i steken og pakk den inn i stekeposen, snør godt igjen.",
+        "Sett steken i ovnen.",
+        "Nå kan den stå i mange timer, du må følge med gjevnlig til du ser at du får en stabil kjerne temperatur på ca 65°C.",
+        "Den bør helst ha minst 6 timer ved ca 65°C. Når det nærmer seg slutten kan du skru opp temperaturen for å få den over 70°C om du ønsker det.",
+        "Du kan vende rundt på steken underveis, slik at du får fuktighet rundt den.",
+        "Ca 1 time før servering starter du på koking av poteter, gulerøtter og brokkoli.",
+        "Ca 1/2 time før servering tar du ut steken av ovnen og heller skyen fra posen i en bolle/kjele.",
+        "Pakk steken i aluminiumsfolie og la den hvile før oppskjering i minst 20min.",
+        "Lag saus basert på pose basis og sky + melk.",
+        "Smak til med tyttebær, rømme, brunost og evnt salt og pepper.",
+        "Server med tyttebær syltetøy."
+    ],
+    "title": "Langtidsstekt Elg",
+    "createdAt": "2015-01-18 17:31:49.000000",
+    "publishedAt": "2015-01-18 17:31:49.000000",
+    "lastModifiedAt": "2015-01-18 17:31:49.000000",
+    "tags": [
+        "middagsretter",
+        "stek"
+    ],
+    "ingredients": [
+        "ca 1kg elgstek",
+        "1 stekepose",
+        "1 pk gulerøtter",
+        "1 bunt brokkoli",
+        "1 pose poteter",
+        "1 pose sausbasis (skysaus eller viltsaus)",
+        "3 dl melk",
+        "5 skiver brunost",
+        "1 ts tyttebær",
+        "1 ss rømme",
+        "evnt salt og pepper"
+    ]
+}

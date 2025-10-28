@@ -1,0 +1,32 @@
+{
+    "description": "",
+    "prepTime": "? minutter",
+    "cookTime": "? minutter",
+    "servingSize": "?",
+    "author": "Svenn Salvesen",
+    "steps": [
+        "Margarin, sukker og salt røres hvitt.",
+        "Rør in resten til en samla deig.",
+        "Sett kjølig (evnt i kjøleskap) natta over.",
+        "Stek ved 180 - 200°C i ca 10min."
+    ],
+    "title": "Kvernkaker",
+    "createdAt": "2014-12-20 12:31:52.000000",
+    "publishedAt": "2014-12-20 12:31:52.000000",
+    "lastModifiedAt": "2014-12-20 12:31:52.000000",
+    "tags": [
+        "bakevarer",
+        "julekaker"
+    ],
+    "ingredients": [
+        "180g margarin",
+        "125g sukker",
+        "1/4ts salt (evnt 1/2ts om margarinen er uten salt)",
+        "1 egg",
+        "1/4ts ingefær",
+        "250g hvetemel",
+        "2ts bakepulver",
+        "1ts vaniljesukker",
+        "Dette blir ganske mange kaker, kan med fordel halveres"
+    ]
+}

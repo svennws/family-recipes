@@ -1,0 +1,23 @@
+{
+    "description": "",
+    "prepTime": "? minutter",
+    "cookTime": "? minutter",
+    "servingSize": "?",
+    "author": "Svenn Salvesen",
+    "steps": [
+        "Kutt kål i tynne strimler.",
+        "Kok kål med salt og karve.",
+        "Tilsett eddit og sukker og kok til det blir gulbrunt."
+    ],
+    "title": "Surkål",
+    "createdAt": "2016-12-05 20:03:56.000000",
+    "publishedAt": "2016-12-05 20:03:56.000000",
+    "lastModifiedAt": "2016-12-05 20:03:56.000000",
+    "tags": "diverse-tilbehor",
+    "ingredients": [
+        "KålSalt",
+        "Karve",
+        "Eddik",
+        "Sukker"
+    ]
+}

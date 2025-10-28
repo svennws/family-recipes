@@ -1,0 +1,44 @@
+{
+    "description": "",
+    "prepTime": "? minutter",
+    "cookTime": "? minutter",
+    "servingSize": "?",
+    "author": "Svenn Salvesen",
+    "steps": [
+        "Smelt smøret og ha i vannet.",
+        "Rør ut gjæren i den lunkne blandingen.",
+        "Tilsett resten av ingrediensene.",
+        "Elt deigen i kjøkkenmaskin til deigen er glatt og smidig.",
+        "Deigen bør eltes i 8-10 minutter på lav hastighet, slik at den ikke blir for varm.",
+        "Bak ut deigen med en gang. Del deigen i 24 like store deler og form fine, runde boller.",
+        "Sett bollene på stekeplater med bakepapir.",
+        "Legg plast løst over stekeplatene med bollene, og et kjøkkenhåndkle over der igjen.",
+        "Hev til dobbelt størrelse. Det tar ca. 1,5-2 timer i romtemperatur.",
+        "Pensle bollene lett med sammenvispet egg når de er ferdig hevet.",
+        "Stek bollene midt i ovnen ved 225 °C i ca 10 minutter,  til de er gylne og fine.",
+        "Avkjøl på rist."
+    ],
+    "title": "OL bolla",
+    "createdAt": "2016-01-23 15:39:16.000000",
+    "publishedAt": "2016-01-23 15:39:16.000000",
+    "lastModifiedAt": "2016-01-23 15:39:16.000000",
+    "tags": [
+        "bakevarer",
+        "hvetebakst"
+    ],
+    "ingredients": [
+        "100 g smør",
+        "5 dl vann",
+        "1 pk gjær",
+        "1 kg hvetemel",
+        "200 g havremel",
+        "75 g havregryn",
+        "35 g havrekli",
+        "150 g sukker",
+        "2 ts salt",
+        "2 ts malt kardemomme",
+        "200 g revet gulrot",
+        "150 g eplesyltetøy med biter",
+        "egg til pensling"
+    ]
+}

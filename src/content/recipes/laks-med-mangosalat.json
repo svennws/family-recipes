@@ -1,0 +1,33 @@
+{
+    "description": "",
+    "prepTime": "? minutter",
+    "cookTime": "? minutter",
+    "servingSize": "?",
+    "author": "Svenn Salvesen",
+    "steps": [
+        "Skrell og kok poteter.",
+        "Skjær laks i biter og stek i litt olje.",
+        "Press saften av 1 lime og rør inn sukker.",
+        "Finhakk koriander og rør inn i lime blanding.",
+        "Skjær mango og avokado i terninger.",
+        "Server i skåler eller anrett etter ønske og server."
+    ],
+    "title": "Laks med mango salat",
+    "createdAt": "2015-03-05 20:28:42.000000",
+    "publishedAt": "2015-03-05 20:28:42.000000",
+    "lastModifiedAt": "2015-03-05 20:28:42.000000",
+    "tags": [
+        "middagsretter",
+        "fiskeretter"
+    ],
+    "ingredients": [
+        "4 fileter laks",
+        "1 mango",
+        "1 avokado",
+        "12 små poteter",
+        "1 liten bunt koriander",
+        "1 lime",
+        "1 ts sukker",
+        "Rømme"
+    ]
+}

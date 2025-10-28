@@ -1,0 +1,29 @@
+{
+    "description": "",
+    "prepTime": "? minutter",
+    "cookTime": "? minutter",
+    "servingSize": "?",
+    "author": "Svenn Salvesen",
+    "steps": [
+        "Legg kjøtt og kål lagvis i en stor kjele. Start med å legge noen fete kjøtt biter nederst, med fettsiden ned.",
+        "Strø pepper, 2 ts salt og 2 ss mel mellom hvert lag.",
+        "Hell på vann til det dekker nesten.",
+        "Kok opp og la det trekke på svak varme i flere timer, til kjøttet er mørt og løsner fra beinene (minst 2 timer)."
+    ],
+    "title": "Tradisjonell fårikål",
+    "createdAt": "2016-12-16 17:32:22.000000",
+    "publishedAt": "2016-12-16 17:32:22.000000",
+    "lastModifiedAt": "2016-12-16 17:32:22.000000",
+    "tags": [
+        "middagsretter",
+        "gryteretter"
+    ],
+    "ingredients": [
+        "Lammekjøtt (400g pr pers)",
+        "Hodekål (400g pr pers)",
+        "Hel pepper",
+        "Salt",
+        "Hvetemel",
+        "Vann"
+    ]
+}

@@ -1,0 +1,34 @@
+{
+    "description": "",
+    "prepTime": "? minutter",
+    "cookTime": "? minutter",
+    "servingSize": "?",
+    "author": "Svenn Salvesen",
+    "steps": [
+        "Finhakk løk og timian.",
+        "Bland løk, kjøttdeig, potetmel og timian godt sammen.",
+        "Spe med litt veske til du får en gjevn og fin konsistens. NB den må ikke bli for løs, et par spiseskjeer er nok.",
+        "Form hamburgere med et par spiseskjeer.",
+        "Stek på grillen på indirekte eller svak varme.",
+        "Serveres i hamburgerbrød med en god dæsj rømme og tytttebær + salat."
+    ],
+    "title": "Elg-burger på grillen",
+    "createdAt": "2015-07-03 07:39:40.000000",
+    "publishedAt": "2015-07-03 07:39:40.000000",
+    "lastModifiedAt": "2015-07-03 07:39:40.000000",
+    "tags": [
+        "middagsretter",
+        "burger"
+    ],
+    "ingredients": [
+        "800g kjøttdeig av elg",
+        "1 gul løk",
+        "4ss potetmel",
+        "En neve timian",
+        "Litt veske (vann eller melk)",
+        "Tyttebærsyltetøy",
+        "Rømme",
+        "Salatblader",
+        "Grove hamburgerbrød"
+    ]
+}

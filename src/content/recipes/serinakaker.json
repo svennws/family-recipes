@@ -1,0 +1,33 @@
+{
+    "description": "",
+    "prepTime": "? minutter",
+    "cookTime": "? minutter",
+    "servingSize": "?",
+    "author": "Svenn Salvesen",
+    "steps": [
+        "Rør sammen smør, sukker og salt hvitt.",
+        "Rør sammen resten av ingrediensene.",
+        "Settes kjølig natta over.",
+        "Stekes ved 180 grader i ca 12 min."
+    ],
+    "title": "Bestemors serinakaker",
+    "createdAt": "2016-12-05 19:14:47.000000",
+    "publishedAt": "2016-12-05 19:14:47.000000",
+    "lastModifiedAt": "2016-12-05 19:14:47.000000",
+    "tags": [
+        "bakevarer",
+        "julekaker"
+    ],
+    "ingredients": [
+        "150g smør",
+        "125g sukker",
+        "1/4 ts salt",
+        "",
+        "1 egg",
+        "1ts vaniljesukker",
+        "1ts bakepulver",
+        "8-10 dråper mandelessens",
+        "250g hvetemel",
+        "Dette blir ganske mange kaker, kan med fordel halveres"
+    ]
+}
