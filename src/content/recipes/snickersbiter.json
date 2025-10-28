@@ -1,0 +1,30 @@
+{
+    "description": "",
+    "prepTime": "? minutter",
+    "cookTime": "? minutter",
+    "servingSize": "?",
+    "author": "Svenn Salvesen",
+    "steps": [
+        "Sett sjokoladen i vannbad, det tar litt tid og smelte 600 g.",
+        "Kok opp sirup, sukker og kokosmasse. Pass på, dette blir varmt.",
+        "Ta av platen og rør inn peanuttsmør.",
+        "Bland inn cornflakes og vaniljesukker.",
+        "Trykk ut deigen på en bakepapirkledd langpanne.",
+        "Smør utover smeltet sjokolade.",
+        "Sett kaldt i kjøleskap natta over og vips så har du konfekt."
+    ],
+    "title": "Snickersbiter",
+    "createdAt": "2015-02-02 17:38:13.000000",
+    "publishedAt": "2015-02-02 17:38:13.000000",
+    "lastModifiedAt": "2015-02-02 17:38:13.000000",
+    "tags": "konditor-snacks/sjokolade",
+    "ingredients": [
+        "1 glass peanuttsmør (rødt lokk)",
+        "1 dl kokosmasse",
+        "1 dl sukker",
+        "2.5 dl sirup",
+        "1.5 L cornflakes",
+        "1 ts vaniljesukker",
+        "600 g melkesjokolade"
+    ]
+}

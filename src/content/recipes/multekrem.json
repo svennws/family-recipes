@@ -1,0 +1,22 @@
+{
+    "description": "",
+    "prepTime": "? minutter",
+    "cookTime": "? minutter",
+    "servingSize": "?",
+    "author": "Svenn Salvesen",
+    "steps": [
+        "Ha fløte, sukker og vaniljesukker i en bolle og pisk krem.",
+        "Vend inn nok multer og smak til."
+    ],
+    "title": "Multekrem",
+    "createdAt": "2016-12-05 19:42:05.000000",
+    "publishedAt": "2016-12-05 19:42:05.000000",
+    "lastModifiedAt": "2016-12-05 19:42:05.000000",
+    "tags": "desserter",
+    "ingredients": [
+        "3dl fløte",
+        "2ss sukker",
+        "1ts vaniljesukker",
+        "nok multer"
+    ]
+}

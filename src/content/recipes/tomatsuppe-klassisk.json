@@ -1,0 +1,42 @@
+{
+    "description": "",
+    "prepTime": "? minutter",
+    "cookTime": "? minutter",
+    "servingSize": "?",
+    "author": "Svenn Salvesen",
+    "steps": [
+        "Finhakk løk og press hvitløk i en gryte.",
+        "Fres opp løk og hvitløk i olje til den blir gyllen.",
+        "Ha i tomatpure og fres i et par minutter til.",
+        "Ha i tomater, sukker, buljong og halvparten av vannet i gryta.",
+        "La det koke opp og spe med mer vann etter hvert som det tykner, helt til du får passe konsistens.",
+        "La det hele koke ca 15 min.",
+        "Ha i basilikum og oregano mot slutten av koketiden og smak til med salt og pepper.",
+        "Ta suppen av varmen og bruk stavmikser for å gjevne ut suppen.",
+        "Rør inn litt rømme før servering for å runde av smaken.",
+        "Serveres med revet ost, brød og evnt kokt pasta eller kokte egg."
+    ],
+    "title": "Klassisk tomatsuppe",
+    "createdAt": "2015-01-09 23:05:51.000000",
+    "publishedAt": "2015-01-09 23:05:51.000000",
+    "lastModifiedAt": "2015-01-09 23:05:51.000000",
+    "tags": [
+        "middagsretter",
+        "supper"
+    ],
+    "ingredients": [
+        "1 løk",
+        "1 fedd hvitløk",
+        "2 ss olje",
+        "1 liten boks tomatpure",
+        "1 terning grønnsaksbuljong",
+        "ca 8 dl vann",
+        "1 boks hakkede tomater",
+        "1/2 ss sukker",
+        "1/4 ts salt",
+        "1/4 ts pepper",
+        "1/2 neve frisk basilikum",
+        "1/2 neve frisk oregano",
+        "1 putt rømme (2 ss pr posjon)"
+    ]
+}

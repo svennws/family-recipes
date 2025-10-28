@@ -1,0 +1,28 @@
+{
+    "description": "",
+    "prepTime": "? minutter",
+    "cookTime": "? minutter",
+    "servingSize": "?",
+    "author": "Svenn Salvesen",
+    "steps": [
+        "Ha 3/4 av melken i en kjele og rør inn semulegryn i kald melk.",
+        "Kok opp underomrøring.",
+        "Spe med resten av melken etter hvert som det tykner.",
+        "Rør inn smør og smak til med salt når det nærmer seg ferdig.",
+        "Kan evnt tilsettes litt kardemomme og vaniljesukker for en vri på smaken.",
+        "Kan også tilsettes noen dråper konditorfarge for å lage en populær vri grøten."
+    ],
+    "title": "Semulegrøt",
+    "createdAt": "2015-02-02 17:06:20.000000",
+    "publishedAt": "2015-02-02 17:06:20.000000",
+    "lastModifiedAt": "2015-02-02 17:06:20.000000",
+    "tags": [
+        "middagsretter",
+        "grot"
+    ],
+    "ingredients": [
+        "1 L melk (helmelk eller havremelk)1.5 dl semulegryn",
+        "1 ts salt",
+        "1.5 ss smør"
+    ]
+}

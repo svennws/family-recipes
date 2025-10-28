@@ -1,0 +1,30 @@
+{
+    "description": "",
+    "prepTime": "? minutter",
+    "cookTime": "? minutter",
+    "servingSize": "?",
+    "author": "Svenn Salvesen",
+    "steps": [
+        "Rør sammen margarin, sukker og salt hvitt.",
+        "Rør sammen resten av ingrediensene til samla deig.",
+        "Settes kjølig over natta",
+        "Stekes ved ca 180 grader i ca 10 min."
+    ],
+    "title": "Bestemors vaniljekranser",
+    "createdAt": "2016-12-05 19:35:10.000000",
+    "publishedAt": "2016-12-05 19:35:10.000000",
+    "lastModifiedAt": "2016-12-05 19:35:10.000000",
+    "tags": [
+        "bakevarer",
+        "julekaker"
+    ],
+    "ingredients": [
+        "180g margarin",
+        "125g sukker",
+        "1/4 ts salt",
+        "1 egg",
+        "250g hvetemel",
+        "2ts vaniljesukker",
+        "1/2 ts bakepulver"
+    ]
+}
