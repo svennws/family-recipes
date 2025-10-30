@@ -1,0 +1,89 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<BaseHead
+			title={`Om ${SITE_TITLE}`}
+			description={`Lær mer om ${SITE_TITLE}, hvordan nettstedet er laget og hvordan du kan bidra.`}
+		/>
+		<style>
+			main {
+				width: 960px;
+				max-width: calc(100% - 2em);
+				margin: 0 auto;
+				padding: 2rem 0 4rem;
+				display: flex;
+				flex-direction: column;
+				gap: 3rem;
+				color: rgb(var(--gray-dark));
+			}
+			section {
+				background: rgb(var(--white));
+				border-radius: 12px;
+				border: 1px solid rgba(var(--black), 0.08);
+				padding: 2rem;
+			}
+			h1,
+			h2 {
+				text-align: center;
+				margin: 0 0 1rem;
+			}
+			p {
+				margin: 0 0 1rem;
+				line-height: 1.6;
+			}
+			ul {
+				margin: 0;
+				padding-left: 1.25rem;
+				line-height: 1.6;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section>
+				<h1>Om {SITE_TITLE}</h1>
+				<p>
+					Formålet med denne siden er å samle familiens oppskrifter på ett sted.
+                    Det er et forsøk på å komme seg vekk fra papir og notatbøker.
+                    Et annet viktig formål vare å migrere fra en gammel Joomla site over til noe som krever mye mindre vedlikehold.
+                    Og ikke minst bygge noe som krever minimalt med kost for å driftes.
+
+                    Så langt ligger dette an til å være tilnærmet gratis i drift og i praksis null i vedlikehold.
+                    Dette kommer av at det som publiseres kun er statisk html og ikke noe som krever kjørende servere.
+                    Statisk html vil også være tilnærmet vedlikeholdsfritt over tid.
+				</p>
+			</section>
+
+			<section>
+				<h2>Slik er siden bygget</h2>
+				<p>
+					Denne siden er bygget som et astro prosjekt, altså kode som skaper statiske html filer til slutt.
+                    Alle oppskriftsdata ligger lagret i prosjektet som json filer.
+				</p>
+			</section>
+
+			<section>
+				<h2>Slik kan du bidra</h2>
+				<p>
+					Målsettningen er å gjøre dette prosjektet åpen og tilgjengelig på github.
+                    Når du leser dette er det helt sikkert blitt slik.
+                    For å bidra kan du registrere nye oppskrifter inn i prosjektet via github.
+                    Det kommer helt sikkert ikke til å være lagt opp til dynamiske prosesser for å automatisk publisere nytt innhold.
+                    Prosjekt eier vil helt sikkert måtte gjøre publiseringen av nye data fra tid til annen, helt til han finner tid til å automatisere det.
+				</p>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
