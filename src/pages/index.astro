@@ -2,19 +2,31 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import CategoryGrid from '../components/CategoryGrid.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 import { getCollection } from 'astro:content';
 import type { RecipeData } from '../content/config';
+import { buildCategoryIndex, getChildCategories } from '../utils/categories';
 
 type RecipeListItem = RecipeData & { slug: string };
 
-const recipes: RecipeListItem[] = (await getCollection('recipes'))
+const recipeEntries = await getCollection('recipes');
+
+const recipes: RecipeListItem[] = recipeEntries
     .map((entry) => ({
         slug: entry.id.split('/').pop() ?? entry.id,
         ...entry.data
     }))
     .sort((a, b) => a.title.localeCompare(b.title));
+
+const categoryIndex = buildCategoryIndex(recipeEntries);
+const topLevelCategories = getChildCategories(categoryIndex, '').map((category) => ({
+    label: category.label,
+    href: `/categories/${category.segments.join('/')}`,
+    count: category.count,
+    title: category.title
+}));
 ---
 
 <html lang="en">
@@ -30,8 +42,12 @@ const recipes: RecipeListItem[] = (await getCollection('recipes'))
 			}
 			h1 {
 				text-align: center;
+				margin: 0.5em;
 			}
-			ul {
+			hr {
+				margin: 1.5em;
+			}
+			.recipe-list {
 				display: flex;
 				flex-wrap: wrap;
 				gap: 1rem;
@@ -40,7 +56,7 @@ const recipes: RecipeListItem[] = (await getCollection('recipes'))
 				padding: 0;
 				justify-content: center;
 			}
-			ul li {
+			.recipe-list li {
 				width: 300px;
 				height: 120px;
 				background: rgb(var(--white));
@@ -49,7 +65,7 @@ const recipes: RecipeListItem[] = (await getCollection('recipes'))
 				box-shadow: 0 12px 30px rgba(var(--black), 0.08);
 				transition: transform 0.2s ease, box-shadow 0.2s ease;
 			}
-			ul li a {
+			.recipe-list li a {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
@@ -71,19 +87,19 @@ const recipes: RecipeListItem[] = (await getCollection('recipes'))
 				color: rgb(var(--gray));
 				text-align: center;
 			}
-			ul li:hover {
+			.recipe-list li:hover {
 				transform: translateY(-6px);
 				box-shadow: 0 18px 36px rgba(var(--black), 0.12);
 			}
-			ul li a:hover .title,
-			ul li a:hover .description {
+			.recipe-list li a:hover .title,
+			.recipe-list li a:hover .description {
 				color: rgb(var(--accent));
 			}
 			@media (max-width: 720px) {
-				ul {
+				.recipe-list {
 					gap: 1rem;
 				}
-				ul li {
+				.recipe-list li {
 					width: 100%;
 					max-width: 320px;
 				}
@@ -94,9 +110,14 @@ const recipes: RecipeListItem[] = (await getCollection('recipes'))
 		<Header />
 		<main>
 			<section>
-				<h1>Våre oppskrifter</h1>
+				<h1>Kategorier</h1>
+				<CategoryGrid categories={topLevelCategories} />
+			</section>
+			<hr />
+			<section>
+				<h1>Alle oppskrifter</h1>
 				<hr />
-				<ul>
+				<ul class="recipe-list">
 				{recipes.map((recipe) => (
 					<li>
 						<a href={`/recipes/${recipe.slug}`}>
