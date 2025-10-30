@@ -1,0 +1,185 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import CategoryGrid from '../../components/CategoryGrid.astro';
+import { SITE_TITLE } from '../../consts';
+import { getCollection } from 'astro:content';
+import type { RecipeData } from '../../content/config';
+import {
+	buildCategoryIndex,
+	formatCategoryTitle,
+	getChildCategories
+} from '../../utils/categories';
+
+type RecipeListItem = RecipeData & { slug: string };
+
+export async function getStaticPaths() {
+	const entries = await getCollection('recipes');
+	const categoryIndex = buildCategoryIndex(entries);
+	const recipesByCategory = new Map<string, RecipeListItem[]>();
+
+	for (const entry of entries) {
+		const segments = entry.id.split('/');
+		if (segments.length < 2) {
+			continue;
+		}
+
+		const slug = segments.at(-1)!;
+		const categorySegments = segments.slice(0, -1);
+
+		for (let depth = 1; depth <= categorySegments.length; depth += 1) {
+			const categoryKey = categorySegments.slice(0, depth).join('/');
+			const current = recipesByCategory.get(categoryKey) ?? [];
+
+			current.push({
+				slug,
+				...entry.data
+			});
+
+			recipesByCategory.set(categoryKey, current);
+		}
+	}
+
+	return Array.from(recipesByCategory.entries()).map(([categoryKey, recipeList]) => {
+		const subcategories = getChildCategories(categoryIndex, categoryKey).map((category) => ({
+			label: category.label,
+			href: `/categories/${category.segments.join('/')}`,
+			count: category.count,
+			title: category.title
+		}));
+
+		return {
+			params: { category: categoryKey },
+			props: {
+				categorySegments: categoryKey.split('/'),
+				recipes: recipeList.sort((a, b) => a.title.localeCompare(b.title)),
+				subcategories
+			}
+		};
+	});
+}
+
+const { categorySegments, recipes, subcategories } = Astro.props as {
+	categorySegments: string[];
+	recipes: RecipeListItem[];
+	subcategories: {
+		label: string;
+		href: string;
+		count: number;
+		title: string;
+	}[];
+};
+
+const categoryTitle = formatCategoryTitle(categorySegments);
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={`${categoryTitle} · ${SITE_TITLE}`} description={`Oppskrifter i kategorien ${categoryTitle}.`} />
+		<style>
+			main {
+				width: 960px;
+			}
+			h1 {
+				text-align: center;
+				margin: 0.5em;
+			}
+			hr {
+				margin: 1.5em;
+			}
+			.recipe-list {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 1rem;
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+				justify-content: center;
+			}
+			.recipe-list li {
+				width: 300px;
+				height: 120px;
+				background: rgb(var(--white));
+				border-radius: 12px;
+				border: 1px solid rgba(var(--black), 0.08);
+				box-shadow: 0 12px 30px rgba(var(--black), 0.08);
+				transition: transform 0.2s ease, box-shadow 0.2s ease;
+			}
+			.recipe-list li a {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				height: 100%;
+				padding: 0.5rem;
+				text-decoration: none;
+				transition: color 0.2s ease;
+			}
+			.title {
+				margin: 0;
+				color: rgb(var(--black));
+				line-height: 1.2;
+				font-size: 1.563rem;
+				text-align: center;
+			}
+			.description {
+				margin: 0.75rem 0 0;
+				color: rgb(var(--gray));
+				text-align: center;
+			}
+			.recipe-list li:hover {
+				transform: translateY(-6px);
+				box-shadow: 0 18px 36px rgba(var(--black), 0.12);
+			}
+			.recipe-list li a:hover .title,
+			.recipe-list li a:hover .description {
+				color: rgb(var(--accent));
+			}
+			@media (max-width: 720px) {
+				.recipe-list {
+					gap: 1rem;
+				}
+				.recipe-list li {
+					width: 100%;
+					max-width: 320px;
+				}
+			}
+			.breadcrumb {
+				margin: 0 0 1rem;
+				text-align: center;
+				color: rgb(var(--gray));
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section>
+				<p class="breadcrumb">{categoryTitle}</p>
+			</section>
+			{subcategories.length > 0 && (
+				<section>
+					<h1>Kategorier under {categoryTitle}</h1>
+					<CategoryGrid categories={subcategories} />
+				</section>
+			)}
+			<hr />
+			<section>
+				<h1>Oppskrifter i {categoryTitle}</h1>
+				<hr />
+				<ul class="recipe-list">
+					{recipes.map((recipe) => (
+						<li>
+							<a href={`/recipes/${recipe.slug}`}>
+								<h4 class="title">{recipe.title}</h4>
+								<p class="description">{recipe.description}</p>
+							</a>
+						</li>
+					))}
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
