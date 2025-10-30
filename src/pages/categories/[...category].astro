@@ -1,7 +1,8 @@
----
+﻿---
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
+import CardGrid from '../../components/CardGrid.astro';
 import CategoryGrid from '../../components/CategoryGrid.astro';
 import { SITE_TITLE } from '../../consts';
 import { getCollection } from 'astro:content';
@@ -88,63 +89,6 @@ const categoryTitle = formatCategoryTitle(categorySegments);
 			hr {
 				margin: 1.5em;
 			}
-			.recipe-list {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 1rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-				justify-content: center;
-			}
-			.recipe-list li {
-				width: 300px;
-				height: 120px;
-				background: rgb(var(--white));
-				border-radius: 12px;
-				border: 1px solid rgba(var(--black), 0.08);
-				box-shadow: 0 12px 30px rgba(var(--black), 0.08);
-				transition: transform 0.2s ease, box-shadow 0.2s ease;
-			}
-			.recipe-list li a {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-				height: 100%;
-				padding: 0.5rem;
-				text-decoration: none;
-				transition: color 0.2s ease;
-			}
-			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1.2;
-				font-size: 1.563rem;
-				text-align: center;
-			}
-			.description {
-				margin: 0.75rem 0 0;
-				color: rgb(var(--gray));
-				text-align: center;
-			}
-			.recipe-list li:hover {
-				transform: translateY(-6px);
-				box-shadow: 0 18px 36px rgba(var(--black), 0.12);
-			}
-			.recipe-list li a:hover .title,
-			.recipe-list li a:hover .description {
-				color: rgb(var(--accent));
-			}
-			@media (max-width: 720px) {
-				.recipe-list {
-					gap: 1rem;
-				}
-				.recipe-list li {
-					width: 100%;
-					max-width: 320px;
-				}
-			}
 			.breadcrumb {
 				margin: 0 0 1rem;
 				text-align: center;
@@ -164,22 +108,22 @@ const categoryTitle = formatCategoryTitle(categorySegments);
 					<CategoryGrid categories={subcategories} />
 				</section>
 			)}
-			<hr />
 			<section>
 				<h1>Oppskrifter i {categoryTitle}</h1>
-				<hr />
-				<ul class="recipe-list">
+				<CardGrid>
 					{recipes.map((recipe) => (
-						<li>
-							<a href={`/recipes/${recipe.slug}`}>
-								<h4 class="title">{recipe.title}</h4>
-								<p class="description">{recipe.description}</p>
+						<li class="card-grid__item">
+							<a class="card-grid__link" href={`/recipes/${recipe.slug}`}>
+								<h4 class="card-grid__title">{recipe.title}</h4>
+								<p class="card-grid__meta">{recipe.description}</p>
 							</a>
 						</li>
 					))}
-				</ul>
+				</CardGrid>
 			</section>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+
