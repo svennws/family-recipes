@@ -1,0 +1,375 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+
+const PAGE_TITLE = 'Lag ny oppskrift';
+const isoNow = new Date().toISOString().slice(0, 16);
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<BaseHead title={`${PAGE_TITLE} | Oppskriftsarkivet`} description="Fyll ut skjemaet, få ferdig JSON, og last ned filen klar for repoet." />
+		<style>
+			main {
+				width: min(100%, 960px);
+				margin: 0 auto;
+				display: flex;
+				flex-direction: column;
+				gap: 2rem;
+			}
+			.form-card,
+			.preview-card {
+				background: white;
+				border-radius: 16px;
+				box-shadow: var(--box-shadow);
+				padding: 2rem;
+			}
+			.form-card h1 {
+				margin-bottom: 0.5rem;
+			}
+			form {
+				display: flex;
+				flex-direction: column;
+				gap: 1.5rem;
+			}
+			fieldset {
+				border: 1px solid rgba(var(--gray), 40%);
+				border-radius: 12px;
+				padding: 1.5rem;
+			}
+			legend {
+				font-weight: 700;
+				padding: 0 0.5rem;
+			}
+			label {
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+				font-weight: 600;
+			}
+			label span {
+				font-weight: 400;
+				color: rgb(var(--gray));
+				font-size: 0.85em;
+			}
+			input,
+			textarea,
+			select {
+				padding: 0.65rem 0.75rem;
+				border-radius: 8px;
+				border: 1px solid rgba(var(--gray-dark), 20%);
+				background: #fff;
+			}
+			textarea {
+				min-height: 120px;
+			}
+			.form-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+				gap: 1rem;
+			}
+			.actions {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 1rem;
+				justify-content: flex-start;
+				align-items: center;
+			}
+			button,
+			.button-link {
+				border: none;
+				border-radius: 999px;
+				padding: 0.85rem 1.75rem;
+				font-size: 1rem;
+				font-weight: 600;
+				cursor: pointer;
+				background: var(--accent);
+				color: white;
+				text-decoration: none;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.5rem;
+			}
+			.button-secondary {
+				background: transparent;
+				border: 1px solid rgba(var(--gray-dark), 30%);
+				color: rgb(var(--gray-dark));
+			}
+			button[disabled] {
+				opacity: 0.5;
+				cursor: not-allowed;
+			}
+			.preview-card pre {
+				background: rgb(14, 18, 25);
+				color: #f5f2f0;
+				min-height: 320px;
+				max-height: 50vh;
+				overflow: auto;
+				font-size: 0.95em;
+			}
+			.helper-text {
+				font-size: 0.95em;
+				color: rgb(var(--gray));
+			}
+			.callout {
+				padding: 1rem 1.25rem;
+				border-left: 4px solid var(--accent);
+				border-radius: 8px;
+				background: rgba(var(--accent), 0.08);
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="form-card">
+				<h1>{PAGE_TITLE}</h1>
+				<p class="helper-text">
+					Fyll ut feltene, så lager vi JSON-en som passer inn i <code>src/content/recipes</code>. Last ned filen
+					og legg den i rett mappe før du kjører <code>npm run build</code> og committer endringen.
+				</p>
+				<form id="recipe-form">
+					<fieldset>
+						<legend>Grunnleggende info</legend>
+						<label>
+							Tittel
+							<input type="text" name="title" placeholder="Tomatsuppe med koriander" required />
+						</label>
+						<label>
+							Slug / filnavn
+							<span>Bruk små bokstaver, tall og bindestrek. Matcher filen du legger i repoet.</span>
+							<input type="text" name="slug" placeholder="tomatsuppe-koriander" pattern="[a-z0-9-]+" required />
+						</label>
+						<label>
+							Beskrivelse
+							<textarea name="description" placeholder="Kort ingress som beskriver retten." required></textarea>
+						</label>
+						<div class="form-grid">
+							<label>
+								Forfatter
+								<input type="text" name="author" placeholder="Svenn Salvesen" />
+							</label>
+							<label>
+								Antall porsjoner
+								<input type="number" name="servings" min="1" placeholder="4" />
+							</label>
+							<label>
+								Porsjonsstørrelse
+								<input type="text" name="servingSize" placeholder="1 bolle" />
+							</label>
+							<label>
+								Forberedelsestid
+								<input type="text" name="prepTime" placeholder="15 min" />
+							</label>
+							<label>
+								Koketid
+								<input type="text" name="cookTime" placeholder="30 min" />
+							</label>
+						</div>
+						<label>
+							Tagger
+							<span>Separert med komma, f.eks. <code>middag, suppe, vegetar</code>.</span>
+							<input type="text" name="tags" placeholder="middag, suppe" />
+						</label>
+					</fieldset>
+					<fieldset>
+						<legend>Ingredienser og steg</legend>
+						<label>
+							Ingredienser
+							<span>En ingrediens per linje.</span>
+							<textarea name="ingredients" placeholder="2 ss olivenolje&#10;1 løk, finhakket" required></textarea>
+						</label>
+						<label>
+							Fremgangsmåte
+							<span>En setning eller punkt per linje.</span>
+							<textarea name="steps" placeholder="Varm opp oljen...&#10;Tilsett løk..." required></textarea>
+						</label>
+					</fieldset>
+					<fieldset>
+						<legend>Tidsstempler</legend>
+						<p class="helper-text">
+							Valgfritt, men greit å lagre historikk. Verdiene konverteres til ISO datoer (UTC) i JSON-filen.
+						</p>
+						<div class="form-grid">
+							<label>
+								Opprettet
+								<input type="datetime-local" name="createdAt" value={isoNow} />
+							</label>
+							<label>
+								Publisert
+								<input type="datetime-local" name="publishedAt" value={isoNow} />
+							</label>
+							<label>
+								Sist endret
+								<input type="datetime-local" name="lastModifiedAt" value={isoNow} />
+							</label>
+						</div>
+					</fieldset>
+					<div class="callout">
+						<strong>Tips:</strong> Når du har lastet ned filen flytter du den til riktig kategori i
+						<code>src/content/recipes/&lt;kategori&gt;/.../&lt;slug&gt;.json</code>, kjører <code>npm run build</code> og pusher endringen.
+					</div>
+					<div class="actions">
+						<button type="submit" id="download-json">Last ned JSON-fil</button>
+						<button type="button" id="copy-json" class="button-secondary">Kopiér JSON til clipboard</button>
+					</div>
+				</form>
+			</section>
+			<section class="preview-card">
+				<h2>JSON-forhåndsvisning</h2>
+				<p class="helper-text">Innholdet oppdateres mens du skriver.</p>
+				<pre><code id="json-preview">// Fyll ut skjemaet for å generere oppskriftsfilen.</code></pre>
+			</section>
+		</main>
+		<Footer />
+		<script type="module">
+			const form = document.querySelector('#recipe-form');
+			const preview = document.querySelector('#json-preview');
+			const downloadButton = document.querySelector('#download-json');
+			const copyButton = document.querySelector('#copy-json');
+			const fields = {
+				title: form.querySelector('[name="title"]'),
+				slug: form.querySelector('[name="slug"]'),
+				description: form.querySelector('[name="description"]'),
+				prepTime: form.querySelector('[name="prepTime"]'),
+				cookTime: form.querySelector('[name="cookTime"]'),
+				servings: form.querySelector('[name="servings"]'),
+				servingSize: form.querySelector('[name="servingSize"]'),
+				ingredients: form.querySelector('[name="ingredients"]'),
+				steps: form.querySelector('[name="steps"]'),
+				tags: form.querySelector('[name="tags"]'),
+				createdAt: form.querySelector('[name="createdAt"]'),
+				publishedAt: form.querySelector('[name="publishedAt"]'),
+				lastModifiedAt: form.querySelector('[name="lastModifiedAt"]'),
+				author: form.querySelector('[name="author"]')
+			};
+
+			const toLines = (value) =>
+				value
+					.split('\n')
+					.map((line) => line.trim())
+					.filter(Boolean);
+
+			const toTags = (value) =>
+				value
+					.split(',')
+					.map((tag) => tag.trim())
+					.filter(Boolean);
+
+			const toNumber = (value) => {
+				const trimmed = value.trim();
+				if (!trimmed) return undefined;
+				const parsed = Number(trimmed);
+				return Number.isFinite(parsed) ? parsed : undefined;
+			};
+
+			const toIso = (value) => (value ? new Date(value).toISOString() : undefined);
+
+			const slugify = (value) =>
+				value
+					.toLowerCase()
+					.replace(/[^a-z0-9]+/g, '-')
+					.replace(/^-+|-+$/g, '')
+					.slice(0, 80);
+
+			let userEditedSlug = false;
+			fields.slug.addEventListener('input', (event) => {
+				userEditedSlug = true;
+				event.target.value = slugify(event.target.value);
+				updatePreview();
+			});
+
+			fields.title.addEventListener('input', () => {
+				if (!userEditedSlug) {
+					fields.slug.value = slugify(fields.title.value);
+				}
+				updatePreview();
+			});
+
+			const buildRecipe = () => {
+				const recipe = {
+					title: fields.title.value.trim(),
+					description: fields.description.value.trim(),
+					prepTime: fields.prepTime.value.trim(),
+					cookTime: fields.cookTime.value.trim(),
+					servings: toNumber(fields.servings.value),
+					servingSize: fields.servingSize.value.trim(),
+					ingredients: toLines(fields.ingredients.value),
+					steps: toLines(fields.steps.value),
+					tags: toTags(fields.tags.value),
+					createdAt: toIso(fields.createdAt.value),
+					publishedAt: toIso(fields.publishedAt.value),
+					lastModifiedAt: toIso(fields.lastModifiedAt.value),
+					author: fields.author.value.trim()
+				};
+
+				return Object.entries(recipe).reduce((acc, [key, value]) => {
+					const isEmptyString = typeof value === 'string' && value === '';
+					const isEmptyArray = Array.isArray(value) && value.length === 0;
+					if (value === undefined || value === null || isEmptyString || isEmptyArray) {
+						return acc;
+					}
+					acc[key] = value;
+					return acc;
+				}, {});
+			};
+
+			const updatePreview = () => {
+				const recipe = buildRecipe();
+				preview.textContent =
+					Object.keys(recipe).length > 0
+						? JSON.stringify(recipe, null, 2)
+						: '// Fyll ut skjemaet for å generere oppskriftsfilen.';
+
+				const hasRequiredArrays = (recipe.ingredients?.length ?? 0) > 0 && (recipe.steps?.length ?? 0) > 0;
+				downloadButton.disabled = !form.checkValidity() || !hasRequiredArrays;
+				copyButton.disabled = downloadButton.disabled;
+			};
+
+			const downloadRecipe = () => {
+				if (!form.reportValidity()) return;
+				const recipe = buildRecipe();
+				const slug = fields.slug.value || 'recipe';
+				const blob = new Blob([JSON.stringify(recipe, null, 2)], { type: 'application/json' });
+				const link = document.createElement('a');
+				link.href = URL.createObjectURL(blob);
+				link.download = `${slug}.json`;
+				document.body.appendChild(link);
+				link.click();
+				document.body.removeChild(link);
+				setTimeout(() => URL.revokeObjectURL(link.href), 2000);
+			};
+
+			const copyRecipe = async () => {
+				if (copyButton.disabled) return;
+				const recipe = buildRecipe();
+				try {
+					await navigator.clipboard.writeText(JSON.stringify(recipe, null, 2));
+					copyButton.textContent = 'JSON kopiert!';
+					setTimeout(() => {
+						copyButton.textContent = 'Kopiér JSON til clipboard';
+					}, 2000);
+				} catch {
+					alert('Kunne ikke kopiere automatisk. Marker JSON-en i forhåndsvisningen og kopier manuelt.');
+				}
+			};
+
+			form.addEventListener('input', () => {
+				window.requestAnimationFrame(updatePreview);
+			});
+			form.addEventListener('change', updatePreview);
+			form.addEventListener('submit', (event) => {
+				event.preventDefault();
+				downloadRecipe();
+			});
+			copyButton.addEventListener('click', copyRecipe);
+
+			updatePreview();
+		</script>
+	</body>
+</html>
