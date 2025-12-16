@@ -3,7 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 
-const PAGE_TITLE = 'Lag ny oppskrift';
+const PAGE_TITLE = 'Lag eller rediger oppskrift';
 const isoNow = new Date().toISOString().slice(0, 16);
 ---
 
@@ -133,6 +133,9 @@ const isoNow = new Date().toISOString().slice(0, 16);
 					Fyll ut feltene, så lager vi JSON-en som passer inn i <code>src/content/recipes</code>. Last ned filen
 					og legg den i rett mappe før du kjører <code>npm run build</code> og committer endringen.
 				</p>
+				<p class="helper-text" id="prefill-notice" hidden>
+					Feltene er forhåndsutfylt fra en eksisterende oppskrift. Gjør endringer og last ned den nye filen.
+				</p>
 				<form id="recipe-form">
 					<fieldset>
 						<legend>Grunnleggende info</legend>
@@ -249,6 +252,12 @@ const isoNow = new Date().toISOString().slice(0, 16);
 				author: form.querySelector('[name="author"]')
 			};
 
+			const toInputDate = (value) => {
+				if (!value) return '';
+				const parsed = new Date(value);
+				return Number.isNaN(parsed.getTime()) ? '' : parsed.toISOString().slice(0, 16);
+			};
+
 			const toLines = (value) =>
 				value
 					.split('\n')
@@ -276,6 +285,49 @@ const isoNow = new Date().toISOString().slice(0, 16);
 					.replace(/[^a-z0-9]+/g, '-')
 					.replace(/^-+|-+$/g, '')
 					.slice(0, 80);
+
+			const getPrefillData = () => {
+				const params = new URLSearchParams(window.location.search);
+				const raw = params.get('prefill');
+				if (!raw) return undefined;
+				try {
+					return JSON.parse(raw);
+				} catch (error) {
+					console.warn('Kunne ikke lese forhåndsutfylling', error);
+					return undefined;
+				}
+			};
+
+			const applyPrefill = (data) => {
+				if (!data) return;
+				fields.title.value = data.title ?? '';
+				if (data.slug) {
+					fields.slug.value = data.slug;
+				}
+				fields.description.value = data.description ?? '';
+				fields.prepTime.value = data.prepTime ?? '';
+				fields.cookTime.value = data.cookTime ?? '';
+				fields.servings.value = data.servings?.toString() ?? '';
+				fields.servingSize.value = data.servingSize ?? '';
+				fields.ingredients.value = Array.isArray(data.ingredients) ? data.ingredients.join('\n') : '';
+				fields.steps.value = Array.isArray(data.steps) ? data.steps.join('\n') : '';
+				fields.tags.value = Array.isArray(data.tags) ? data.tags.join(', ') : '';
+				fields.createdAt.value = toInputDate(data.createdAt) || fields.createdAt.value;
+				fields.publishedAt.value = toInputDate(data.publishedAt) || fields.publishedAt.value;
+				fields.lastModifiedAt.value = toInputDate(data.lastModifiedAt) || fields.lastModifiedAt.value;
+				fields.author.value = data.author ?? '';
+
+				if (data.slug) {
+					userEditedSlug = true;
+				}
+
+				const notice = document.querySelector('#prefill-notice');
+				if (notice) {
+					notice.hidden = false;
+				}
+			};
+
+			const prefillData = getPrefillData();
 
 			let userEditedSlug = false;
 			fields.slug.addEventListener('input', (event) => {
@@ -369,6 +421,7 @@ const isoNow = new Date().toISOString().slice(0, 16);
 			});
 			copyButton.addEventListener('click', copyRecipe);
 
+			applyPrefill(prefillData);
 			updatePreview();
 		</script>
 	</body>
