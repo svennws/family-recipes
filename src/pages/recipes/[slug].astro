@@ -15,7 +15,9 @@ export async function getStaticPaths() {
     }));
 }
 const { recipe } = Astro.props as { recipe: RecipeData };
+const slug = Astro.params.slug;
 const servingsDisplay = recipe.servings ?? recipe.servingSize;
+const editLink = `/new-recipe?prefill=${encodeURIComponent(JSON.stringify({ ...recipe, slug }))}`;
 ---
 
 <html lang="en">
@@ -59,6 +61,29 @@ const servingsDisplay = recipe.servings ?? recipe.servingSize;
             .last-updated-on {
                 font-style: italic;
             }
+            .actions {
+                display: flex;
+                justify-content: flex-end;
+                margin-bottom: 1rem;
+            }
+            .edit-link {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.4rem;
+                padding: 0.5rem 1rem;
+                border-radius: 12px;
+                border: 1px solid rgba(var(--gray-dark), 20%);
+                background: transparent;
+                color: rgb(var(--gray-dark));
+                text-decoration: none;
+                font-weight: 700;
+                transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+            }
+            .edit-link:hover {
+                background: rgba(var(--gray-dark), 6%);
+                color: rgb(var(--gray-dark));
+                border-color: rgba(var(--gray-dark), 30%);
+            }
         </style>
     </head>
 
@@ -67,6 +92,9 @@ const servingsDisplay = recipe.servings ?? recipe.servingSize;
         <main>
             <article>
                 <div class="prose">
+                    <div class="actions">
+                        <a class="edit-link" href={editLink} aria-label="Rediger denne oppskriften i skjemaet">Rediger</a>
+                    </div>
                     <div class="title">
                         <h1>{recipe.title}</h1>
                         <p>{recipe.description}</p>
@@ -100,7 +128,7 @@ const servingsDisplay = recipe.servings ?? recipe.servingSize;
                         </>
                     )}
                 </div>
-            <article></article>
+            </article>
         </main>
         <Footer />
     </body>
