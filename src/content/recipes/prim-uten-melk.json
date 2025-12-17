@@ -1,25 +1,30 @@
 {
-    "description": "",
-    "prepTime": "? minutter",
-    "cookTime": "? minutter",
-    "servingSize": "?",
-    "author": "Svenn Salvesen",
-    "steps": [
-        "Rør sammen havremelk og maisenna.",
-        "Ha alt sammen nå sammen i en kjele og kok opp under konstant omrøring.",
-        "Ha primen over i en passe stor boks og avkjøl."
-    ],
-    "title": "Prim uten ku-melk",
-    "createdAt": "2016-12-11 17:23:11.000000",
-    "publishedAt": "2016-12-11 17:23:11.000000",
-    "lastModifiedAt": "2016-12-11 17:23:11.000000",
-    "tags": [
-        "diverse",
-        "tilbehor"
-    ],
-    "ingredients": [
-        "2 ss Karamell-masse uten ku-melk",
-        "1 1/2 dl havrefløte",
-        "3 ts maisenna"
-    ]
+	"title": "Prim uten melk",
+	"description": "Tykk prim",
+	"prepTime": "2 min",
+	"cookTime": "150 min",
+	"servings": 4,
+	"ingredients": [
+		"0.5l Havremelk, fet",
+		"80g sukker",
+		"1ss lys sirup",
+		"1/4ts salt",
+		"1-1.5ss kokosolje",
+		"1ts vaniljesukker"
+	],
+	"steps": [
+		"Hell 1 liter havremelk i en vid kjele",
+		"La koke uten lokk i ca 60-120 min til melken er redusert til 1/4 mengde og tykk med lys karamellfarge",
+		"Rør inn sukker, sirup og salt til det er oppløst",
+		"Ta kjelen av varmen og rør inn kokosolje",
+		"Vaniljesukker, malt, gjær, etc kan brukes for smak."
+	],
+	"tags": [
+		"pålegg",
+		"tilbehør"
+	],
+	"createdAt": "2025-12-04T12:49:00.000Z",
+	"publishedAt": "2025-12-04T12:49:00.000Z",
+	"lastModifiedAt": "2025-12-04T12:49:00.000Z",
+	"author": "Svenn Salvesen"
 }
