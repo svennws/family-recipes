@@ -20,114 +20,226 @@ const servingsDisplay = recipe.servings ?? recipe.servingSize;
 const editLink = `/new-recipe?prefill=${encodeURIComponent(JSON.stringify({ ...recipe, slug }))}`;
 ---
 
-<html lang="en">
-    <head>
-        <BaseHead title={recipe.title} description={recipe.description} />
-        <style>
-            main {
-                width: calc(100% - 2em);
-                max-width: 100%;
-                margin: 0;
-            }
-            .hero-image {
-                width: 100%;
-            }
-            .hero-image img {
-                display: block;
-                margin: 0 auto;
-                border-radius: 12px;
-                box-shadow: var(--box-shadow);
-            }
-            .prose {
-                width: 720px;
-                max-width: calc(100% - 2em);
-                margin: auto;
-                padding: 1em;
-                color: rgb(var(--gray-dark));
-            }
-            .title {
-                margin-bottom: 1em;
-                padding: 1em 0;
-                text-align: center;
-                line-height: 1;
-            }
-            .title h1 {
-                margin: 0 0 0.5em 0;
-            }
-            .date {
-                margin-bottom: 0.5em;
-                color: rgb(var(--gray));
-            }
-            .last-updated-on {
-                font-style: italic;
-            }
-            .actions {
-                display: flex;
-                justify-content: flex-end;
-                margin-bottom: 1rem;
-            }
-            .edit-link {
-                display: inline-flex;
-                align-items: center;
-                gap: 0.4rem;
-                padding: 0.5rem 1rem;
-                border-radius: 12px;
-                border: 1px solid rgba(var(--gray-dark), 20%);
-                background: transparent;
-                color: rgb(var(--gray-dark));
-                text-decoration: none;
-                font-weight: 700;
-                transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
-            }
-            .edit-link:hover {
-                background: rgba(var(--gray-dark), 6%);
-                color: rgb(var(--gray-dark));
-                border-color: rgba(var(--gray-dark), 30%);
-            }
+<html lang="no">
+	<head>
+		<BaseHead title={recipe.title} description={recipe.description} />
+		<style>
+			.recipe-shell {
+				width: min(900px, 100%);
+				margin: 0 auto;
+				padding: 2.5rem 1.5rem 4rem;
+				color: rgb(var(--gray-dark));
+				display: flex;
+				flex-direction: column;
+				gap: 1.75rem;
+			}
+			.recipe-hero {
+				border-radius: 22px;
+				border: 1px solid rgba(var(--black), 0.06);
+				background:
+					radial-gradient(circle at 20% 20%, rgba(var(--accent-rgb), 0.12), transparent 35%),
+					radial-gradient(circle at 80% 0%, rgba(var(--gray-light), 0.7), transparent 30%),
+					#fff;
+				padding: 2.4rem 2.6rem;
+				box-shadow: 0 20px 50px rgba(var(--black), 0.04);
+			}
+			.hero-top {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 1rem;
+				flex-wrap: wrap;
+				margin-bottom: 0.75rem;
+			}
+			.badge {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4rem;
+				padding: 0.45rem 0.85rem;
+				border-radius: 999px;
+				background: rgba(var(--accent-rgb), 0.12);
+				color: var(--accent);
+				font-weight: 700;
+				font-size: 0.9rem;
+				border: 1px solid rgba(var(--accent-rgb), 0.2);
+			}
+			.edit-link {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4rem;
+				padding: 0.65rem 1.1rem;
+				border-radius: 12px;
+				border: 1px solid rgba(var(--black), 0.08);
+				background: #fff;
+				color: rgb(var(--black));
+				text-decoration: none;
+				font-weight: 700;
+				box-shadow: 0 10px 28px rgba(var(--black), 0.04);
+				transition: background 150ms ease, color 150ms ease, border-color 150ms ease, transform 150ms ease,
+					box-shadow 150ms ease;
+			}
+			.edit-link:hover {
+				background: rgba(var(--accent-rgb), 0.12);
+				color: var(--accent);
+				border-color: rgba(var(--accent-rgb), 0.2);
+				transform: translateY(-1px);
+				box-shadow: 0 14px 35px rgba(var(--black), 0.08);
+			}
+			.recipe-hero h1 {
+				margin: 0 0 0.35rem;
+				font-size: clamp(2.1rem, 4vw, 2.8rem);
+				line-height: 1.15;
+				text-align: left;
+			}
+			.recipe-lede {
+				margin: 0 0 0.6rem;
+				color: rgb(var(--gray));
+				font-size: 1.05rem;
+				line-height: 1.6;
+			}
+			.date-block {
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+				flex-wrap: wrap;
+				color: rgb(var(--gray));
+				font-size: 0.95rem;
+				margin-top: 0.4rem;
+			}
+			.stat-row {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+				gap: 0.75rem;
+				margin-top: 1.4rem;
+			}
+			.stat {
+				display: flex;
+				flex-direction: column;
+				gap: 0.2rem;
+				padding: 0.9rem 1rem;
+				border-radius: 12px;
+				border: 1px solid rgba(var(--black), 0.05);
+				background: rgba(255, 255, 255, 0.85);
+			}
+			.stat-label {
+				font-weight: 700;
+				color: rgb(var(--black));
+			}
+			.stat-value {
+				color: rgb(var(--gray));
+			}
+			.content-card {
+				background: #fff;
+				border-radius: 18px;
+				border: 1px solid rgba(var(--black), 0.06);
+				box-shadow: 0 18px 50px rgba(var(--black), 0.03);
+				padding: 1.5rem 1.75rem;
+			}
+			.content-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 1.5rem;
+			}
+			.section-title {
+				margin: 0 0 0.75rem;
+			}
+			ul,
+			ol {
+				padding-left: 1.25rem;
+				margin: 0;
+				display: grid;
+				gap: 0.4rem;
+			}
+			.tags {
+				margin-top: 1.5rem;
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+			}
+			.tag {
+				display: inline-flex;
+				align-items: center;
+				padding: 0.45rem 0.85rem;
+				border-radius: 999px;
+				background: rgba(var(--accent-rgb), 0.12);
+				color: var(--accent);
+				font-weight: 700;
+				font-size: 0.9rem;
+			}
+			@media (max-width: 640px) {
+				.recipe-shell {
+					padding: 1.75rem 1.1rem 3rem;
+				}
+				.recipe-hero {
+					padding: 2rem 1.5rem;
+				}
+				.recipe-hero h1 {
+					text-align: left;
+				}
+			}
         </style>
     </head>
 
     <body>
         <Header />
-        <main>
+        <main class="recipe-shell">
             <article>
-                <div class="prose">
-                    <div class="actions">
+                <header class="recipe-hero">
+                    <div class="hero-top">
+                        <span class="badge">Oppskrift</span>
                         <a class="edit-link" href={editLink} aria-label="Rediger denne oppskriften i skjemaet">Rediger</a>
                     </div>
-                    <div class="title">
-                        <h1>{recipe.title}</h1>
-                        <p>{recipe.description}</p>
-                        {(recipe.publishedAt || recipe.lastModifiedAt) && (
-                            <div class="date">
-                                {recipe.publishedAt && <FormattedDate date={recipe.publishedAt} />}
-                                {recipe.lastModifiedAt && (
-                                    <div class="last-updated-on">
-                                        Sist oppdatert <FormattedDate date={recipe.lastModifiedAt} />
-                                    </div>
-                                )}
-                            </div>
-                        )}
-                    </div>
-                    <hr />
-                    <p>
-                        <strong>Prepping:</strong> {recipe.prepTime} | <strong>Tilbredning:</strong> {recipe.cookTime} | <strong>Mengde:</strong> {servingsDisplay}
-                    </p>
-                    <h2>Ingredienser</h2>
-                    <ul>
-                        {recipe.ingredients.map((item) => <li>{item}</li>)}
-                    </ul>
-                    <h2>Instruksjoner</h2>
-                    <ol>
-                        {recipe.steps.map((step) => <li>{step}</li>)}
-                    </ol>
-                    {recipe.tags.length > 0 && (
-                        <>
-                            <h3>Kategorier</h3>
-                            <p>{recipe.tags.join(', ')}</p>
-                        </>
+                    <h1>{recipe.title}</h1>
+                    <p class="recipe-lede">{recipe.description}</p>
+                    {(recipe.publishedAt || recipe.lastModifiedAt) && (
+                        <div class="date-block">
+                            {recipe.publishedAt && (
+                                <span>Publisert <FormattedDate date={recipe.publishedAt} /></span>
+                            )}
+                            {recipe.lastModifiedAt && (
+                                <span>Sist oppdatert <FormattedDate date={recipe.lastModifiedAt} /></span>
+                            )}
+                        </div>
                     )}
-                </div>
+                    <div class="stat-row">
+                        <div class="stat">
+                            <span class="stat-label">Prepping</span>
+                            <span class="stat-value">{recipe.prepTime}</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Tilbredning</span>
+                            <span class="stat-value">{recipe.cookTime}</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Mengde</span>
+                            <span class="stat-value">{servingsDisplay}</span>
+                        </div>
+                    </div>
+                </header>
+
+                <section class="content-card">
+                    <div class="content-grid">
+                        <div>
+                            <h2 class="section-title">Ingredienser</h2>
+                            <ul>
+                                {recipe.ingredients.map((item) => <li>{item}</li>)}
+                            </ul>
+                        </div>
+                        <div>
+                            <h2 class="section-title">Instruksjoner</h2>
+                            <ol>
+                                {recipe.steps.map((step) => <li>{step}</li>)}
+                            </ol>
+                        </div>
+                    </div>
+                    {recipe.tags.length > 0 && (
+                        <div class="tags" aria-label="Kategorier">
+                            {recipe.tags.map((tag) => (
+                                <span class="tag">{tag}</span>
+                            ))}
+                        </div>
+                    )}
+                </section>
             </article>
         </main>
         <Footer />

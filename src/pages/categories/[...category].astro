@@ -75,41 +75,166 @@ const { categorySegments, recipes, subcategories } = Astro.props as {
 const categoryTitle = formatCategoryTitle(categorySegments);
 ---
 
-<html lang="en">
+<html lang="no">
 	<head>
 		<BaseHead title={`${categoryTitle} · ${SITE_TITLE}`} description={`Oppskrifter i kategorien ${categoryTitle}.`} />
 		<style>
-			main {
-				width: 960px;
+			.page-shell {
+				width: min(1180px, 100%);
+				margin: 0 auto;
+				padding: 2.5rem 1.5rem 4rem;
+				display: flex;
+				flex-direction: column;
+				gap: 2.5rem;
 			}
-			h1 {
+			.hero {
+				border-radius: 22px;
+				border: 1px solid rgba(var(--black), 0.08);
+				background:
+					radial-gradient(circle at 20% 20%, rgba(var(--accent-rgb), 0.12), transparent 35%),
+					radial-gradient(circle at 80% 0%, rgba(var(--gray-light), 0.8), transparent 30%),
+					#fff;
+				padding: 2.6rem 2.8rem;
 				text-align: center;
-				margin: 0.5em;
+				box-shadow: 0 20px 50px rgba(var(--black), 0.04);
 			}
-			hr {
-				margin: 1.5em;
+			.eyebrow {
+				margin: 0 0 0.4rem;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				font-weight: 700;
+				font-size: 0.78rem;
+				color: rgba(var(--black), 0.65);
 			}
-			.breadcrumb {
-				margin: 0 0 1rem;
-				text-align: center;
+			.hero h1 {
+				margin: 0 0 0.4rem;
+				font-size: clamp(2rem, 3.5vw, 2.7rem);
+				line-height: 1.1;
+			}
+			.hero-meta {
+				margin: 0.25rem 0 1.4rem;
 				color: rgb(var(--gray));
+			}
+			.hero-actions {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.75rem;
+				flex-wrap: wrap;
+			}
+			.button {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.35rem;
+				padding: 0.9rem 1.4rem;
+				border-radius: 999px;
+				font-weight: 700;
+				font-size: 0.95rem;
+				border: 1px solid rgba(var(--black), 0.08);
+				color: rgb(var(--black));
+				text-decoration: none;
+				transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease,
+					box-shadow 0.2s ease, color 0.2s ease;
+			}
+			.button.primary {
+				background: var(--accent);
+				color: #fff;
+				border-color: var(--accent);
+				box-shadow: 0 14px 35px rgba(var(--accent-rgb), 0.28);
+			}
+			.button.primary:hover {
+				background: var(--accent-dark);
+				transform: translateY(-1px);
+			}
+			.button.ghost {
+				background: rgba(var(--accent-rgb), 0.08);
+				color: var(--accent);
+				border-color: rgba(var(--accent-rgb), 0.2);
+			}
+			.button.ghost:hover {
+				background: rgba(var(--accent-rgb), 0.12);
+				color: var(--accent);
+				transform: translateY(-1px);
+			}
+			.section {
+				padding: 2rem 2rem 2.5rem;
+				border-radius: 18px;
+				background: rgba(255, 255, 255, 0.95);
+				border: 1px solid rgba(var(--black), 0.05);
+				box-shadow: 0 18px 50px rgba(var(--black), 0.03);
+			}
+			.section-header {
+				display: flex;
+				align-items: flex-start;
+				justify-content: space-between;
+				gap: 1rem;
+				margin-bottom: 1.25rem;
+				flex-wrap: wrap;
+			}
+			.section h2 {
+				margin: 0;
+				font-size: clamp(1.8rem, 3vw, 2.3rem);
+			}
+			.section-lede {
+				margin: 0.35rem 0 0;
+				color: rgb(var(--gray));
+			}
+			@media (max-width: 720px) {
+				.page-shell {
+					padding: 1.5rem 1.1rem 3rem;
+					gap: 2rem;
+				}
+				.hero {
+					padding: 2.2rem 1.3rem;
+				}
+				.section {
+					padding: 1.5rem 1.25rem 2rem;
+				}
 			}
 		</style>
 	</head>
 	<body>
 		<Header />
-		<main>
-			<section>
-				<p class="breadcrumb">{categoryTitle}</p>
+		<main class="page-shell">
+			<section class="hero">
+				<p class="eyebrow">Kategori</p>
+				<h1>{categoryTitle}</h1>
+				<p class="hero-meta">
+					{recipes.length}{' '}
+					{recipes.length === 1 ? 'oppskrift' : 'oppskrifter'}
+					{subcategories.length > 0 ? ` · ${subcategories.length} underkategori${subcategories.length === 1 ? '' : 'er'}` : ''}
+				</p>
+				<div class="hero-actions">
+					<a class="button primary" href="/new-recipe">Ny oppskrift</a>
+					{subcategories.length > 0 ? (
+						<a class="button ghost" href="#subcategories">Se underkategorier</a>
+					) : (
+						<a class="button ghost" href="#recipes">Se oppskrifter</a>
+					)}
+				</div>
 			</section>
+
 			{subcategories.length > 0 && (
-				<section>
-					<h1>Kategorier under {categoryTitle}</h1>
+				<section id="subcategories" class="section">
+					<div class="section-header">
+						<div>
+							<p class="eyebrow">Underkategorier</p>
+							<h2>Kategorier under {categoryTitle}</h2>
+							<p class="section-lede">Utforsk mer spesifikke samlinger innen {categoryTitle.toLowerCase()}.</p>
+						</div>
+					</div>
 					<CategoryGrid categories={subcategories} />
 				</section>
 			)}
-			<section>
-				<h1>Oppskrifter i {categoryTitle}</h1>
+			<section id="recipes" class="section">
+				<div class="section-header">
+					<div>
+						<p class="eyebrow">Alle</p>
+						<h2>Oppskrifter i {categoryTitle}</h2>
+						<p class="section-lede">Alfabetisk oversikt over oppskriftene i denne kategorien.</p>
+					</div>
+				</div>
 				<CardGrid>
 					{recipes.map((recipe) => (
 						<li class="card-grid__item">
@@ -125,5 +250,4 @@ const categoryTitle = formatCategoryTitle(categorySegments);
 		<Footer />
 	</body>
 </html>
-
 

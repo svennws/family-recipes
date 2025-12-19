@@ -30,7 +30,7 @@ const topLevelCategories = getChildCategories(categoryIndex, '').map((category) 
 }));
 ---
 
-<html lang="en">
+<html lang="no">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -38,28 +38,158 @@ const topLevelCategories = getChildCategories(categoryIndex, '').map((category) 
 		<meta name="generator" content={Astro.generator} />
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
-			main {
-				width: 960px;
+			.home-shell {
+				width: min(1180px, 100%);
+				margin: 0 auto;
+				padding: 2.5rem 1.5rem 4rem;
+				display: flex;
+				flex-direction: column;
+				gap: 2.75rem;
 			}
-			h1 {
+			.hero {
+				border-radius: 22px;
+				border: 1px solid rgba(var(--black), 0.08);
+				background:
+					radial-gradient(circle at 20% 20%, rgba(var(--accent-rgb), 0.12), transparent 35%),
+					radial-gradient(circle at 80% 0%, rgba(var(--gray-light), 0.8), transparent 30%),
+					#fff;
+				padding: 2.75rem 3rem;
 				text-align: center;
-				margin: 0.5em;
+				box-shadow: 0 20px 50px rgba(var(--black), 0.04);
 			}
-			hr {
-				margin: 1.5em;
+			.eyebrow {
+				margin: 0 0 0.4rem;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				font-weight: 700;
+				font-size: 0.78rem;
+				color: rgba(var(--black), 0.65);
+			}
+			.hero h1 {
+				margin: 0 0 0.4rem;
+				font-size: clamp(2.1rem, 4vw, 3rem);
+				line-height: 1.1;
+			}
+			.hero-lede {
+				margin: 0.35rem auto 1.5rem;
+				max-width: 640px;
+				color: rgb(var(--gray));
+			}
+			.hero-actions {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.75rem;
+				flex-wrap: wrap;
+				margin-top: 0.5rem;
+			}
+			.button {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.35rem;
+				padding: 0.9rem 1.4rem;
+				border-radius: 999px;
+				font-weight: 700;
+				font-size: 0.95rem;
+				border: 1px solid rgba(var(--black), 0.08);
+				color: rgb(var(--black));
+				text-decoration: none;
+				transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease,
+					box-shadow 0.2s ease, color 0.2s ease;
+			}
+			.button.primary {
+				background: var(--accent);
+				color: #fff;
+				border-color: var(--accent);
+				box-shadow: 0 14px 35px rgba(var(--accent-rgb), 0.28);
+			}
+			.button.primary:hover {
+				background: var(--accent-dark);
+				transform: translateY(-1px);
+			}
+			.button.ghost {
+				background: rgba(var(--accent-rgb), 0.08);
+				color: var(--accent);
+				border-color: rgba(var(--accent-rgb), 0.2);
+			}
+			.button.ghost:hover {
+				background: rgba(var(--accent-rgb), 0.12);
+				color: var(--accent);
+				transform: translateY(-1px);
+			}
+			.section {
+				padding: 2rem 2rem 2.5rem;
+				border-radius: 18px;
+				background: rgba(255, 255, 255, 0.95);
+				border: 1px solid rgba(var(--black), 0.05);
+				box-shadow: 0 18px 50px rgba(var(--black), 0.03);
+			}
+			.section-header {
+				display: flex;
+				align-items: flex-start;
+				justify-content: space-between;
+				gap: 1rem;
+				margin-bottom: 1.25rem;
+				flex-wrap: wrap;
+			}
+			.section h2 {
+				margin: 0;
+				font-size: clamp(1.9rem, 3vw, 2.4rem);
+			}
+			.section-lede {
+				margin: 0.35rem 0 0;
+				color: rgb(var(--gray));
+			}
+			@media (max-width: 720px) {
+				.home-shell {
+					padding: 1.5rem 1.1rem 3rem;
+					gap: 2rem;
+				}
+				.hero {
+					padding: 2.25rem 1.25rem;
+				}
+				.section {
+					padding: 1.5rem 1.25rem 2rem;
+				}
 			}
 		</style>
 	</head>
 	<body>
 		<Header />
-		<main>
-			<section>
-				<h1>Kategorier</h1>
+		<main class="home-shell">
+			<section class="hero">
+				<p class="eyebrow">Familieoppskrifter</p>
+				<h1>Salvesens kjøkken</h1>
+				<p class="hero-lede">
+					En samling oppskrifter som er lette å finne tilbake til og enkle å dele.
+					Fra bakefavoritter til hverdagsmiddager.
+				</p>
+				<div class="hero-actions">
+					<a class="button primary" href="/new-recipe">Ny oppskrift</a>
+					<a class="button ghost" href="#categories">Se kategorier</a>
+				</div>
+			</section>
+
+			<section id="categories" class="section">
+				<div class="section-header">
+					<div>
+						<p class="eyebrow">Utforsk</p>
+						<h2>Kategorier</h2>
+						<p class="section-lede">Hopp rett til noe søtt, salt eller kjapt til middag.</p>
+					</div>
+				</div>
 				<CategoryGrid categories={topLevelCategories} />
 			</section>
-			<hr />
-			<section>
-				<h1>Alle oppskrifter</h1>
+
+			<section id="recipes" class="section">
+				<div class="section-header">
+					<div>
+						<p class="eyebrow">Alle</p>
+						<h2>Alle oppskrifter</h2>
+						<p class="section-lede">Alfabetisk oversikt over alt som ligger i kokeboken.</p>
+					</div>
+				</div>
 				<CardGrid>
 					{recipes.map((recipe) => (
 						<li class="card-grid__item">
