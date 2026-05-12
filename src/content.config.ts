@@ -1,4 +1,7 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
+import type * as zod from 'astro/zod';
 
 const recipeSchema = z.object({
     title: z.string(),
@@ -17,7 +20,10 @@ const recipeSchema = z.object({
 });
 
 const recipes = defineCollection({
-    type: 'data',
+    loader: glob({
+        base: './src/content/recipes',
+        pattern: '**/*.json'
+    }),
     schema: recipeSchema
 });
 
@@ -25,4 +31,4 @@ export const collections = {
     recipes
 };
 
-export type RecipeData = z.infer<typeof recipeSchema>;
+export type RecipeData = zod.infer<typeof recipeSchema>;
