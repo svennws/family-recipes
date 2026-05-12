@@ -7,7 +7,7 @@ import CategoryGrid from '../components/CategoryGrid.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 import { getCollection } from 'astro:content';
-import type { RecipeData } from '../content/config';
+import type { RecipeData } from '../content.config';
 import { buildCategoryIndex, getChildCategories } from '../utils/categories';
 
 type RecipeListItem = RecipeData & { slug: string };

@@ -230,7 +230,7 @@ const isoNow = new Date().toISOString().slice(0, 16);
 			</section>
 		</main>
 		<Footer />
-		<script type="module">
+		<script type="module" is:inline>
 			const form = document.querySelector('#recipe-form');
 			const preview = document.querySelector('#json-preview');
 			const downloadButton = document.querySelector('#download-json');
