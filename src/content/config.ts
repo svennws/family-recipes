@@ -10,9 +10,9 @@ const recipeSchema = z.object({
     ingredients: z.array(z.string()).nonempty(),
     steps: z.array(z.string()).nonempty(),
     tags: z.array(z.string()).default([]),
-    createdAt: z.string().optional(),
-    publishedAt: z.string().optional(),
-    lastModifiedAt: z.string().optional()
+    createdAt: z.coerce.date().optional(),
+    publishedAt: z.coerce.date().optional(),
+    lastModifiedAt: z.coerce.date().optional()
 });
 
 const recipes = defineCollection({
