@@ -15,6 +15,7 @@ export async function getStaticPaths() {
     }));
 }
 const { recipe } = Astro.props as { recipe: RecipeData };
+const servingsDisplay = recipe.servings ?? recipe.servingSize;
 ---
 
 <html lang="en">
@@ -66,7 +67,6 @@ const { recipe } = Astro.props as { recipe: RecipeData };
         <main>
             <article>
                 <div class="prose">
-                    <a href="/">&larr; Back to recipes</a>
                     <div class="title">
                         <h1>{recipe.title}</h1>
                         <p>{recipe.description}</p>
@@ -75,7 +75,7 @@ const { recipe } = Astro.props as { recipe: RecipeData };
                                 {recipe.publishedAt && <FormattedDate date={recipe.publishedAt} />}
                                 {recipe.lastModifiedAt && (
                                     <div class="last-updated-on">
-                                        Last updated on <FormattedDate date={recipe.lastModifiedAt} />
+                                        Sist oppdatert <FormattedDate date={recipe.lastModifiedAt} />
                                     </div>
                                 )}
                             </div>
@@ -83,19 +83,19 @@ const { recipe } = Astro.props as { recipe: RecipeData };
                     </div>
                     <hr />
                     <p>
-                        <strong>Prep:</strong> {recipe.prepTime} | <strong>Cook:</strong> {recipe.cookTime} | <strong>Serves:</strong> {recipe.servings}
+                        <strong>Prepping:</strong> {recipe.prepTime} | <strong>Tilbredning:</strong> {recipe.cookTime} | <strong>Mengde:</strong> {servingsDisplay}
                     </p>
-                    <h2>Ingredients</h2>
+                    <h2>Ingredienser</h2>
                     <ul>
                         {recipe.ingredients.map((item) => <li>{item}</li>)}
                     </ul>
-                    <h2>Instructions</h2>
+                    <h2>Instruksjoner</h2>
                     <ol>
                         {recipe.steps.map((step) => <li>{step}</li>)}
                     </ol>
                     {recipe.tags.length > 0 && (
                         <>
-                            <h3>Tags</h3>
+                            <h3>Kategorier</h3>
                             <p>{recipe.tags.join(', ')}</p>
                         </>
                     )}
