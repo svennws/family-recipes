@@ -1,52 +1,128 @@
 ---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+
 type Recipe = {
-  slug: string;
-  title: string;
-  description: string;
-  prepTime: string;
-  cookTime: string;
-  servings: number;
-  ingredients: string[];
-  steps: string[];
-  tags: string[];
+    slug: string;
+    title: string;
+    description: string;
+    prepTime: string;
+    cookTime: string;
+    servings: number;
+    ingredients: string[];
+    steps: string[];
+    tags: string[];
+    createdAt: string;
+    lastModifiedAt: string;
+    publishedAt: string;
 };
 
 export async function getStaticPaths() {
-  const recipeModules = import.meta.glob('../../content/recipes/*.json');
+    const recipeModules = import.meta.glob('../../content/recipes/*.json');
 
-  const entries = await Promise.all(
-    Object.values(recipeModules).map(async (loader) => {
-      const { default: recipe } = (await loader()) as { default: Recipe };
-      
-      return {
-        params: { slug: recipe.slug },
-        props: { recipe },
-      };
-    })
-  );
+    const entries = await Promise.all(
+        Object.values(recipeModules).map(async (loader) => {
+            const { default: recipe } = (await loader()) as { default: Recipe };
 
-  return entries;
+            return {
+                params: { slug: recipe.slug },
+                props: { recipe },
+            };
+        })
+    );
+
+    return entries;
 }
-console.log(Astro.props as { recipe: Recipe });
 const { recipe } = Astro.props as { recipe: Recipe };
 ---
-<a href="/">&larr; Back to recipes</a>
-<h1>{recipe.title}</h1>
-<p>{recipe.description}</p>
-<p>
-  <strong>Prep:</strong> {recipe.prepTime} | <strong>Cook:</strong> {recipe.cookTime} | <strong>Serves:</strong> {recipe.servings}
-</p>
-<h2>Ingredients</h2>
-<ul>
-  {recipe.ingredients.map((item) => <li>{item}</li>)}
-</ul>
-<h2>Instructions</h2>
-<ol>
-  {recipe.steps.map((step) => <li>{step}</li>)}
-</ol>
-{recipe.tags && (
-  <>
-    <h3>Tags</h3>
-    <p>{recipe.tags.join(', ')}</p>
-  </>
-)}
+
+<html lang="en">
+    <head>
+        <BaseHead title={recipe.title} description={recipe.description} />
+        <style>
+            main {
+                width: calc(100% - 2em);
+                max-width: 100%;
+                margin: 0;
+            }
+            .hero-image {
+                width: 100%;
+            }
+            .hero-image img {
+                display: block;
+                margin: 0 auto;
+                border-radius: 12px;
+                box-shadow: var(--box-shadow);
+            }
+            .prose {
+                width: 720px;
+                max-width: calc(100% - 2em);
+                margin: auto;
+                padding: 1em;
+                color: rgb(var(--gray-dark));
+            }
+            .title {
+                margin-bottom: 1em;
+                padding: 1em 0;
+                text-align: center;
+                line-height: 1;
+            }
+            .title h1 {
+                margin: 0 0 0.5em 0;
+            }
+            .date {
+                margin-bottom: 0.5em;
+                color: rgb(var(--gray));
+            }
+            .last-updated-on {
+                font-style: italic;
+            }
+        </style>
+    </head>
+
+    <body>
+        <Header />
+        <main>
+            <article>
+                <div class="prose">
+                    <a href="</article>/">&larr; Back to recipes</a>
+                    <div class="title">
+                        <h1>{recipe.title}</h1>
+                        <p>{recipe.description}</p>
+						<div class="date">
+							{recipe.publishedAt}
+							{
+								recipe.lastModifiedAt && (
+									<div class="last-updated-on">
+										Last updated on {recipe.lastModifiedAt}
+									</div>
+								)
+							}
+						</div>
+                    </div>
+                    <hr />
+                    <p>
+                        <strong>Prep:</strong> {recipe.prepTime} | <strong>Cook:</strong> {recipe.cookTime} | <strong>Serves:</strong> {recipe.servings}
+                    </p>
+                    <h2>Ingredients</h2>
+                    <ul>
+                        {recipe.ingredients.map((item) => <li>{item}</li>)}
+                    </ul>
+                    <h2>Instructions</h2>
+                    <ol>
+                        {recipe.steps.map((step) => <li>{step}</li>)}
+                    </ol>
+                    {recipe.tags && (
+                        <>
+                            <h3>Tags</h3>
+                            <p>{recipe.tags.join(', ')}</p>
+                        </>
+                    )}
+                </div>
+            <article></article>
+        </main>
+        <Footer />
+    </body>
+</html>
