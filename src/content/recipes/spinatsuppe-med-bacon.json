@@ -1,0 +1,38 @@
+{
+    "title": "Spinatsuppe med bacon",
+    "slug": "spinatsuppe-med-bacon.json",
+    "description": "",
+    "prepTime": "10 minutes",
+    "cookTime": "30 minutes",
+    "servings": 4,
+    "ingredients": [
+        "2 små gule løk",
+        "2 hvitløk båter",
+        "50g margarin",
+        "2ss hvetemel",
+        "2 pakker frisk spinat",
+        "ca 5 dl grønnsaksbuljong",
+        "1 pakke (havre)fløte",
+        "1 pakke (havre)rømme",
+        "300g bacon bit",
+        "litt pepper, salt og muskat"
+    ],
+    "steps": [
+        "Finhakk løk og hvitløk og stek i margarin.",
+        "Rør inn melet og spe med buljong.",
+        "Kok på svak varme og ha i all spinaten.",
+        "Hell over fløten og kok på svak varme med lokk til spinaten har falt sammen.",
+        "Kjør suppen gjevn med stavmikser.",
+        "Skjær bacon i små biter og fres i en panne.",
+        "Hell over bacon i suppa sammen med rømmen.",
+        "Smak til med krydder.",
+        "Kan serveres med ferskt brød og revet ost."
+    ],
+    "tags": [
+        "middagsretter",
+        "supper"
+    ],
+    "createdAt": "2017-10-01",
+    "publishedAt": "2017-10-01",
+    "lastModifiedAt": "2017-10-01"
+}
