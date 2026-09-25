@@ -1,0 +1,35 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const modules = import.meta.glob('../content/recipes/*.json', { eager: true });
+const recipes = Object.values(modules).map((mod) => mod.default)
+	.sort((a, b) => a.title.localeCompare(b.title));
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Våre oppskrifter</h1>
+			<ul>
+			{recipes.map((recipe) => (
+				<li>
+				<a href={`/recipes/${recipe.slug}`}>{recipe.title}</a>
+				<p>{recipe.description}</p>
+				</li>
+			))}
+			</ul>
+		</main>
+		<Footer />
+	</body>
+</html>
