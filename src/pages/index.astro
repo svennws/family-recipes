@@ -4,9 +4,12 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
-const modules = import.meta.glob('../content/recipes/*.json', { eager: true });
-const recipes = Object.values(modules).map((mod) => mod.default)
-	.sort((a, b) => a.title.localeCompare(b.title));
+import { getCollection } from 'astro:content';
+import type { RecipeData } from '../content/config';
+
+const recipes: RecipeData[] = (await getCollection('recipes'))
+    .map((entry) => entry.data)
+    .sort((a, b) => a.title.localeCompare(b.title));
 ---
 
 <html lang="en">
